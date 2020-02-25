@@ -21,7 +21,7 @@ class APIControllerAdvice {
 
     @ExceptionHandler(Exception::class)
     fun internalServerException(request: HttpServletRequest, e: Exception): ResponseEntity<String> {
-        logger.error("{ \"sessionID\": ${request.requestedSessionId}, \"reqURI\": \"${request.requestURI}\", \"error\": \"${e.message}\" }")
+        logger.error("{ \"sessionID\": ${request.requestedSessionId}, \"requestURI\": \"${request.requestURI}\", \"error\": \"${e.message}\" }")
         return ResponseEntity("ERROR: ${e.message}", HttpStatus.INTERNAL_SERVER_ERROR)
     }
 }

@@ -18,16 +18,6 @@ import javax.persistence.EntityNotFoundException
 @RequestMapping("$API_VERSION_PREFIX/restaurants")
 class RestaurantController(
         val restaurantService: RestaurantService
-) {
-
-    @GetMapping("/{id}")
-    fun getRestaurant(@PathVariable id: Int): ResponseEntity<Restaurant?> {
-        return apiOK(restaurantService.findByIdOrNull(id)?: throw EntityNotFoundException())
-    }
-
-    @GetMapping
-    fun getRestaurants(): MutableList<Restaurant> {
-        return restaurantService.findAll()
-    }
+) : BaseAPIController<Restaurant, Int, RestaurantService>() {
 
 }
