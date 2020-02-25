@@ -6,6 +6,10 @@ build/
 !**/src/test/**
 logs/
 
+#querydsl QClasses
+build/generated/
+
+
 ### STS ###
 .apt_generated
 .classpath
