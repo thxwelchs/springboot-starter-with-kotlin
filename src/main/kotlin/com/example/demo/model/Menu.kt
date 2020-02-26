@@ -9,11 +9,10 @@ import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
 
 @Entity
-@JsonIgnoreProperties(value=["hibernateLazyInitializer", "handler"])
 class Menu(
+        var name: String = "",
+        var price: BigDecimal = BigDecimal.ZERO,
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "restaurant_id")
-        var restaurant: Restaurant,
-        var price: BigDecimal = BigDecimal.ZERO,
-        var name: String = ""
+        var restaurant: Restaurant
 ): MutableEntity()
