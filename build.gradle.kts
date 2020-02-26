@@ -18,6 +18,17 @@ repositories {
     mavenCentral()
 }
 
+noArg {
+    annotation("javax.persistence.Entity")
+    annotation("javax.persistence.MappedSuperclass")
+    annotation("javax.persistence.Embeddable")
+}
+allOpen {
+    annotation("javax.persistence.Entity")
+    annotation("javax.persistence.MappedSuperclass")
+    annotation("javax.persistence.Embeddable")
+}
+
 val querydslVersion = "4.2.1"
 
 dependencies {
@@ -38,6 +49,9 @@ dependencies {
 
     //logging
     implementation("io.github.microutils:kotlin-logging:1.7.6")
+
+    // Hibernate5Module이 지연로딩 되는 객체의 프로퍼티 직렬화를 가능하게 해준다. (jackson ObjectMapper support)
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-hibernate5:2.9.8")
 
     runtimeOnly("mysql:mysql-connector-java")
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
