@@ -20,6 +20,13 @@ class MenuController(
         private val menuService: MenuService
 ) : BaseAPIController<Menu, Int, MenuService>() {
 
+    @GetMapping("/{id}")
+    override fun getOneByID(@PathVariable id: Int): ResponseEntity<Menu> {
+        val m = menuService.findById(id).orElseThrow{EntityNotFoundException()}
+        m.restaurant.name // lazy load
+        return ResponseEntity.ok(m)
+    }
+
     @GetMapping("/test")
     fun asdf(@DateTimeFormat(pattern = "yyyy-MM-dd kk:mm:ss") start: LocalDateTime,@DateTimeFormat(pattern = "yyyy-MM-dd kk:mm:ss")  end: LocalDateTime): ResponseEntity<MutableList<Menu>?> {
         return apiOK(menuService.findByCreatedAtBetween(start, end))

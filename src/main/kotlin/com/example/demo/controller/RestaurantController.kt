@@ -19,5 +19,11 @@ import javax.persistence.EntityNotFoundException
 class RestaurantController(
         val restaurantService: RestaurantService
 ) : BaseAPIController<Restaurant, Int, RestaurantService>() {
+    @GetMapping("/{id}")
+    override fun getOneByID(@PathVariable id: Int): ResponseEntity<Restaurant> {
+        val r = restaurantService.findById(id).orElseThrow{EntityNotFoundException()}
+        r.menus.size // menus lazy load
+        return ResponseEntity.ok(r)
+    }
 
 }
