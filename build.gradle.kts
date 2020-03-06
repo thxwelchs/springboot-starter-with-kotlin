@@ -7,7 +7,7 @@ plugins {
     kotlin("plugin.spring") version "1.3.61"
     kotlin("plugin.jpa") version "1.3.61"
     kotlin("kapt") version "1.3.61"
-    idea	// idea를 사용 할 수 있게 해줌
+    idea
 }
 
 group = "com.example"

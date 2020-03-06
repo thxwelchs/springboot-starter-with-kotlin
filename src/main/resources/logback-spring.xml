@@ -83,4 +83,31 @@
         </root>
     </springProfile>
 
+    <springProfile name="test">
+        <appender name="ROLLING-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_FILE}</file>
+            <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+                <pattern>${FILE_LOG_PATTERN}</pattern>
+            </encoder>
+            <!-- 일자별로 로그 파일을 적재하되, 100MB를 초과하면 로그 파일 분할 -->
+            <!-- 최대 10일치를 보관하고 나머지는 삭제, 최대 1GB를 초과해도 나머지를 삭제 -->
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>%d{yyyy-MM-dd}.%i.-test.${LOG_FILE}</fileNamePattern>
+                <maxFileSize>20MB</maxFileSize>
+                <maxHistory>3</maxHistory>
+                <totalSizeCap>100MB</totalSizeCap>
+            </rollingPolicy>
+        </appender>
+
+        <logger name="me.logback" level="debug" additivity="false">
+            <!-- ref="appender name 지정" -->
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="ROLLING-FILE"/>
+        </logger>
+        <root level="debug">
+            <appender-ref ref="CONSOLE"/> <!-- console에 logging 하는 것 -->
+            <appender-ref ref="ROLLING-FILE"/>
+        </root>
+    </springProfile>
+
 </configuration>

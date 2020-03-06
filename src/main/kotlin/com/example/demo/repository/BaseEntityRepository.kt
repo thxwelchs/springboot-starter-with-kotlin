@@ -14,7 +14,7 @@ import javax.persistence.NamedQuery
 interface BaseEntityRepository<T, ID : Serializable?>: JpaRepository<T, ID> {
     fun findByCreatedAtBetween(start: LocalDateTime, end: LocalDateTime): MutableList<T>
 
-    @Query("SELECT t FROM #{#entityName} t WHERE t.id >= :id") // 이런식으로 T로 받은 제네릭을 JPQL에서도 활용 가능합니다.
+    @Query("SELECT t FROM #{#entityName} t WHERE t.id >= :id")
     fun findByBiggerId(id: ID): MutableList<T>
 
     @Query("SELECT t FROM #{#entityName} t WHERE t.id = :id")
