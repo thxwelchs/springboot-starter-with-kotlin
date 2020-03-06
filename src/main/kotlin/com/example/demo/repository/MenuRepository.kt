@@ -3,6 +3,7 @@ package com.example.demo.repository
 import com.example.demo.model.Menu
 import com.example.demo.model.QMenu
 import com.example.demo.model.QRestaurant
+import org.springframework.data.domain.PageImpl
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 import org.springframework.transaction.annotation.Transactional
@@ -20,7 +21,6 @@ class MenuRepositoryCustomImpl: MenuRepositoryCustom, QuerydslRepositorySupport(
 
     override fun findAllJoinRestaurant(): MutableList<Menu> {
         val m = QMenu.menu
-        val r = QRestaurant.restaurant
 
         return from(m)
                 .select(m)
