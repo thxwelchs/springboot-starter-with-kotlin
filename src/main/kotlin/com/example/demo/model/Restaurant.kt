@@ -2,15 +2,14 @@ package com.example.demo.model
 
 import com.example.demo.model.entity.MutableEntity
 import com.fasterxml.jackson.annotation.JsonIdentityInfo
-import com.fasterxml.jackson.annotation.ObjectIdGenerators
-import com.fasterxml.jackson.annotation.ObjectIdGenerators.PropertyGenerator
+import com.fasterxml.jackson.annotation.ObjectIdGenerators.IntSequenceGenerator
 import java.util.*
 import javax.persistence.Entity
-import javax.persistence.FetchType
 import javax.persistence.OneToMany
 import javax.persistence.OrderBy
 
 @Entity
+@JsonIdentityInfo(generator = IntSequenceGenerator::class, property = "id")
 class Restaurant(
         var name: String = "",
         @OneToMany(mappedBy = "restaurant")
