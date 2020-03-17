@@ -30,6 +30,8 @@ allOpen {
 }
 
 val querydslVersion = "4.2.1"
+val swaggerVersion = "2.9.2"
+val swaggerAnnotationVersion = "1.5.21"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
@@ -41,6 +43,17 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+
+
+    // swagger
+    implementation("io.springfox:springfox-swagger2:$swaggerVersion") {
+        exclude("io.swagger:swagger-annotations")
+        exclude("io.swagger:swagger-models")
+    }
+    implementation("io.springfox:springfox-swagger-ui:$swaggerVersion")
+    // swagger ui 접속시 NumberFormatException 해결
+    implementation("io.swagger:swagger-annotations:$swaggerAnnotationVersion")
+    implementation("io.swagger:swagger-models:$swaggerAnnotationVersion")
 
     //query-dsl
     implementation("com.querydsl:querydsl-jpa:$querydslVersion")

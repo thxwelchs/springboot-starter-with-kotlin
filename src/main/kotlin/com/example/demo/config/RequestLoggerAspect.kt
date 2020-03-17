@@ -35,7 +35,6 @@ class RequestLoggerAspect {
         val result = joinPoint.proceed()
         val request = (RequestContextHolder.currentRequestAttributes() as ServletRequestAttributes).request
 
-        // TODO mapper를 빈으로 등록 해버리고 싱글톤 형태로 관리할까?
         val mapper = ObjectMapper()
 
         val logMap: MutableMap<String, Any> = HashMap()
